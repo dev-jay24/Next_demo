@@ -1,0 +1,53 @@
+.formControlInput {
+  display: block;
+  margin: 10px 0;
+  width: fit-content;
+}
+
+.label {
+  display: block;
+}
+
+.error {
+  display: block;
+  color: rgb(255, 59, 59);
+}
+
+.input {
+  display: block;
+  padding: 8px 12px;
+  margin: 8px 0;
+  width: 350px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.PhoneInput {
+  width: 350px;
+  padding: 8px 0;
+  margin: 8px 0;
+}
+
+.PhoneInput :global(.react-international-phone-input) {
+  width: 100%;
+  color: black !important;
+}
+
+/* .PhoneInput :global(.react-international-phone-country-selector-button) {
+  background-color: #252525;
+}
+
+.PhoneInput :global(.react-international-phone-country-selector-button):hover {
+  background-color: #252525;
+} */
+.PhoneInput
+  :global(.react-international-phone-country-selector-button__dropdown-arrow) {
+  border-top: 4px solid black;
+  border-right: var(
+      --react-international-phone-country-selector-arrow-size,
+      4px
+    )
+    solid transparent;
+  border-left: var(--react-international-phone-country-selector-arrow-size, 4px)
+    solid transparent;
+}
