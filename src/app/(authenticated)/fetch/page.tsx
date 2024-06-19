@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
-import { fetchWrapper } from "../../_utils/fetchWrapper";
+// import { fetchWrapper } from "../../_utils/fetchWrapper";
 
 async function page() {
   // useEffect(() => {

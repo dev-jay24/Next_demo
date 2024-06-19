@@ -1,5 +1,4 @@
 import Header from "../_components/Header";
-import { withAuth } from "./withAuth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,4 +19,4 @@ Readonly<{
   );
 };
 
-export default withAuth(layout);
+export default layout;

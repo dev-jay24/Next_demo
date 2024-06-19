@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import AddQuestionForm from "../../_components/AddQuestionForm";
 
-function page() {
+function Page() {
   useEffect(() => {
     document.body.style.overflow = "hidden";
   }, []);
@@ -19,4 +19,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

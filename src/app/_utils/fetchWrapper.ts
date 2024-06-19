@@ -1,7 +1,8 @@
-import { getSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { getSessionData } from "./action";
 
-export async function fetchWrapper(url, options = {}) {
-  const session = await getSession();
+export async function fetchWrapper(url: any, options: any = {}) {
+  const session: any = await getSessionData();
 
   const token = session?.user?.accessToken;
 
@@ -22,6 +23,9 @@ export async function fetchWrapper(url, options = {}) {
 
   // Handle errors
   if (!response.ok) {
+    if (response?.status === 403) {
+      signOut();
+    }
     throw new Error(`API request failed with status: ${response.status}`);
   }
 

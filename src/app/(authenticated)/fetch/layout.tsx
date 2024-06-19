@@ -7,6 +7,8 @@ const layout = async ({
 }: //
 Readonly<{
   children: React.ReactNode;
+  sidebar: React.ReactNode;
+  topbar: React.ReactNode;
 }>) => {
   return (
     <>

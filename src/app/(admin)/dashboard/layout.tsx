@@ -5,6 +5,7 @@ const layout = async ({
   model,
 }: Readonly<{
   children: React.ReactNode;
+  model: React.ReactNode;
 }>) => {
   return (
     <>

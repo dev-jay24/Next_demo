@@ -1,5 +1,4 @@
 import Header from "../_components/Header";
-import { withAuth } from "./withAuth";
 
 const layout = ({
   children,
@@ -16,4 +15,4 @@ const layout = ({
   );
 };
 
-export default withAuth(layout);
+export default layout;
