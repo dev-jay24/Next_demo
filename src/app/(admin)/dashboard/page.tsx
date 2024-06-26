@@ -1,5 +1,6 @@
 "use server";
 
+import { useEffect } from "react";
 import QustionList from "./_components/QustionList";
 import UserList from "./_components/UserList";
 
@@ -12,6 +13,7 @@ const Page = ({
   if (searchParams?.page && +searchParams?.page > 0) {
     pageNo = +searchParams?.page;
   }
+
   return (
     <div>
       <QustionList />

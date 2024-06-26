@@ -1,5 +1,7 @@
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export const authOptions = {
   pages: {
@@ -7,6 +9,14 @@ export const authOptions = {
   },
 
   providers: [
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID as string,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -19,7 +29,7 @@ export const authOptions = {
       },
       async authorize(credentials, req) {
         try {
-          const res = await fetch("http://192.168.3.239:3000/auth/login", {
+          const res = await fetch("http://192.168.3.27:3000/auth/login", {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
@@ -27,7 +37,6 @@ export const authOptions = {
             method: "POST",
             body: JSON.stringify(credentials),
           });
-          console.log("res: ", res);
           if (res.ok) {
             const user = await res.json();
             return user.data;
@@ -48,7 +57,12 @@ export const authOptions = {
   },
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account, profile, isNewUser }) {
+      console.log("token: ", token, "user : ", user, "account :", account);
+      if (account) {
+        token.account = account;
+      }
+
       if (user) {
         token.user = user;
       }

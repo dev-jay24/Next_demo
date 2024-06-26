@@ -2,6 +2,7 @@
 
 import { RenderTextInput } from "@/app/_components/RenderInput";
 import { fetchWrapper } from "@/app/_utils/fetchWrapper";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {
@@ -19,6 +20,7 @@ export default function AddQuestionForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const optionArr = [data.option1, data.option2, data.option3, data.option4];
@@ -34,6 +36,8 @@ export default function AddQuestionForm() {
       body: JSON.stringify(payload),
     });
     console.log("res: ", res);
+    router.push("/dashboard/");
+    document.body.style.overflow = "auto";
   };
 
   return (

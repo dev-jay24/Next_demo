@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import LoginCSS from "./Login.module.css";
 import { signIn } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
+import { useState } from "react";
 
 type Props = {};
 
@@ -20,6 +21,8 @@ const Login = (props: Props) => {
   } = useForm<Inputs>();
   const router = useRouter();
 
+  const [error, setError] = useState("");
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
     const { email, password } = data;
@@ -32,6 +35,8 @@ const Login = (props: Props) => {
       console.log("response: ", response);
       if (!response?.error) {
         router.push("/");
+      } else {
+        setError("pls enter proper email and password or try later");
       }
     } catch (e) {
       console.log(e);
@@ -49,7 +54,7 @@ const Login = (props: Props) => {
             required: "this field is required",
             pattern: {
               value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-              message: "pls proper email",
+              message: "pls enter proper email",
             },
           }}
           label={"Email"}
@@ -72,7 +77,11 @@ const Login = (props: Props) => {
           type="password"
         />{" "}
         <input type="submit" className={LoginCSS.Submit_Btn} />
+        {error && <p>{error}</p>}
       </form>
+
+      <button onClick={() => signIn("google")}>With Google</button>
+      <button onClick={() => signIn("facebook")}>With Facebook</button>
     </div>
   );
 };
